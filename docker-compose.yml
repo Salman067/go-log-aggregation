@@ -1,0 +1,160 @@
+version: "3.9"
+
+services:
+  # RabbitMQ Message Broker
+  message-broker:
+    image: rabbitmq:3-management-alpine
+    container_name: message-broker
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ${HOME}/dev-rabbitmq/data:/var/lib/rabbitmq
+      - ${HOME}/dev-rabbitmq/log:/var/log/rabbitmq
+    restart: always
+    networks:
+      - dev-network
+
+  # # Producer Service
+  # producer:
+  #   container_name: producer
+  #   build:
+  #     context: .
+  #     dockerfile: /home/salman/Desktop/log-aggregation/producer/Dockerfile
+  #   ports:
+  #     - 4000:4000
+  #   environment:
+  #     AMQP_SERVER_URL: amqp://guest:guest@message-broker:5672/
+  #   restart: always
+  #   networks:
+  #     - dev-network
+  #   depends_on:
+  #     - message-broker
+  #   volumes:
+  #     - /home/salman/Desktop/log-aggregation/data.json:/app/data.json
+
+  #Consumer Services
+  consumer-pi-hr:
+    # container_name: consumer-pi-hr
+    build:
+      context: .
+      dockerfile: /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/Dockerfile
+    environment:
+      AMQP_SERVER_URL: amqp://guest:guest@message-broker:5672/
+      CONSUMER_NAME: PI-HR
+      GOGC: 100
+    restart: always
+    networks:
+      - dev-network
+    depends_on:
+      - message-broker
+      # - producer
+    volumes:
+      - /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/logs/PI-HR.log:/app/PI-HR.log
+    deploy:
+      replicas: 3 
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 50M
+
+
+  consumer-envoyer:
+    # container_name: consumer-pi-hr
+    build:
+      context: .
+      dockerfile: /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/Dockerfile
+    environment:
+      AMQP_SERVER_URL: amqp://guest:guest@message-broker:5672/
+      CONSUMER_NAME: Envoyer
+      GOGC: 100
+    restart: always
+    networks:
+      - dev-network
+    depends_on:
+      - message-broker
+      # - producer
+    volumes:
+      - /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/logs/Envoyer.log:/app/Envoyer.log
+    deploy:
+      replicas: 3 
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 50M
+
+  consumer-kilikit:
+    # container_name: consumer-pi-hr
+    build:
+      context: .
+      dockerfile: /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/Dockerfile
+    environment:
+      AMQP_SERVER_URL: amqp://guest:guest@message-broker:5672/
+      CONSUMER_NAME: Kilikit
+      GOGC: 100
+    restart: always
+    networks:
+      - dev-network
+    depends_on:
+      - message-broker
+      # - producer
+    volumes:
+      - /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/logs/Kilikit.log:/app/Kilikit.log
+    deploy:
+      replicas: 3 
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 50M
+
+  consumer-well-team:
+    # container_name: consumer-pi-hr
+    build:
+      context: .
+      dockerfile: /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/Dockerfile
+    environment:
+      AMQP_SERVER_URL: amqp://guest:guest@message-broker:5672/
+      CONSUMER_NAME: WELL-TEAM
+      GOGC: 100
+    restart: always
+    networks:
+      - dev-network
+    depends_on:
+      - message-broker
+      # - producer
+    volumes:
+      - /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/logs/WELL-TEAM.log:/app/WELL-TEAM.log
+    deploy:
+      replicas: 3 
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 50M
+
+  consumer-financify:
+    # container_name: consumer-pi-hr
+    build:
+      context: .
+      dockerfile: /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/Dockerfile
+    environment:
+      AMQP_SERVER_URL: amqp://guest:guest@message-broker:5672/
+      CONSUMER_NAME: Financify
+      GOGC: 100
+    restart: always
+    networks:
+      - dev-network
+    depends_on:
+      - message-broker
+      # - producer
+    volumes:
+      - /home/salman/Desktop/vivasoft/go-log-aggregator/consumer/logs/Financify.log:/app/Financify.log
+    deploy:
+      replicas: 3 
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 50M
+
+networks:
+  dev-network:
+    driver: bridge

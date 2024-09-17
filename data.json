@@ -1,0 +1,79 @@
+[
+    {
+        "app_name": "Financify",
+        "service_name": "Inventory",
+        "log_level": "INFO",
+        "message": "An error occurred during the operation",
+        "timestamp": "2024-09-11T10:28:41.104921"
+    },
+    {
+        "app_name": "Financify",
+        "service_name": "Asset-Management",
+        "log_level": "INFO",
+        "message": "Operation completed successfully",
+        "timestamp": "2024-09-11T10:58:41.104947"
+    },
+    {
+        "app_name": "PI-HR",
+        "service_name": "Employee-Management",
+        "log_level": "ERROR",
+        "message": "Debugging the issue",
+        "timestamp": "2024-09-11T10:36:41.104958"
+    },
+    {
+        "app_name": "PI-HR",
+        "service_name": "Meal-Management",
+        "log_level": "ERROR",
+        "message": "Operation completed successfully",
+        "timestamp": "2024-09-11T10:27:41.104968"
+    },
+    {
+        "app_name": "Envoyer",
+        "service_name": "Notification",
+        "log_level": "WARN",
+        "message": "Warning: Potential issue detected",
+        "timestamp": "2024-09-11T10:20:41.104976"
+    },
+    {
+        "app_name": "Financify",
+        "service_name": "Account",
+        "log_level": "WARN",
+        "message": "Warning: Potential issue detected",
+        "timestamp": "2024-09-11T10:21:41.104983"
+    },
+    {
+        "app_name": "Kilikit",
+        "service_name": "Menu-Management",
+        "log_level": "ERROR",
+        "message": "Debugging the issue",
+        "timestamp": "2024-09-11T10:53:41.104991"
+    },
+    {
+        "app_name": "Kilikit",
+        "service_name": "Order-Management",
+        "log_level": "INFO",
+        "message": "Debugging the issue",
+        "timestamp": "2024-09-11T10:30:41.105000"
+    },
+    {
+        "app_name": "Kilikit",
+        "service_name": "Payement",
+        "log_level": "WARN",
+        "message": "Debugging the issue",
+        "timestamp": "2024-09-11T10:43:41.105012"
+    },
+    {
+        "app_name": "Financify",
+        "service_name": "Invoice",
+        "log_level": "INFO",
+        "message": "Operation completed successfully",
+        "timestamp": "2024-09-11T10:38:41.105020"
+    },
+    {
+        "app_name": "WELL-TEAM",
+        "service_name": "Fitness",
+        "log_level": "INFO",
+        "message": "Operation completed successfully",
+        "timestamp": "2024-09-11T10:38:41.105020"
+    }
+]
